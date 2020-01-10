@@ -35,6 +35,8 @@ class Programa_Principal():
 		self.Frame_Adicionais = Frame(self.Janela, bd=1, relief=SOLID, highlightbackground='#000')
 		self.Crud = IntVar()
 		self.Campo_Crud = Checkbutton(self.Janela, text='CRUD', variable=self.Crud, font=fonttext)
+		self.Node = IntVar()
+		self.Campo_Node = Checkbutton(self.Janela, text='NodeJs', variable=self.Node, font=fonttext)
 		
 		# Bloco 2
 		
@@ -53,6 +55,7 @@ class Programa_Principal():
 		self.Label_Adicionais.place(x=220, y=11)
 		self.Frame_Adicionais.place(x=220, y=35, width=300, height=35)
 		self.Campo_Crud.place(x=230, y=38)
+		self.Campo_Node.place(x=300, y=38)
 		
 		self.Label_Campo_Local.place(x=10, y=100)
 		self.Campo_Local.place(x=10, y=125, width=420, height=40)
