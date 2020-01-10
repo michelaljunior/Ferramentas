@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+# Versao: 1
+# Desenvolvido por Michel Anderson
+# Data Ultima alteração 10/01/2020
+# Erno Soluções © 2020
 
 from Modulos import *
 
