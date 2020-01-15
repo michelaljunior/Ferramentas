@@ -12,7 +12,7 @@ class Programa_Principal():
 			self.Janela.destroy()
 			
 		self.Janela = Janela
-		
+		self.Janela.configure(bg='#fff')
 		self.menubar = Menu(self.Janela)
 		self.Janela.config(menu=self.menubar)
 		
@@ -31,25 +31,28 @@ class Programa_Principal():
 		self.Menu_3.add_command(label='Sobre Nós')
 		# Bloco 1
 		
-		self.Label_Campo_Nome = Label(self.Janela, text='Nome do projeto:', font=fonttext)
+		self.Label_Campo_Nome = Label(self.Janela, bg='#fff', text='Nome do projeto:', font=fonttext)
 		self.Campo_Nome = Entry(self.Janela, bd=1, relief=SOLID, highlightbackground='#000', font=fontlight)
 		
 		# SubBloco 1
-		self.Label_Adicionais = Label(self.Janela, text='Adicionais:',font=fonttext)
-		self.Frame_Adicionais = Frame(self.Janela, bd=1, relief=SOLID, highlightbackground='#000')
+		self.Label_Adicionais = Label(self.Janela, bg='#fff', text='Adicionais:',font=fonttext)
+		self.Frame_Adicionais = Frame(self.Janela, bg='#fff', bd=1, relief=SOLID, highlightbackground='#000')
 		self.Crud = IntVar()
-		self.Campo_Crud = Checkbutton(self.Janela, text='CRUD', variable=self.Crud, font=fonttext)
+		self.Campo_Crud = Checkbutton(self.Janela, bg='#fff', text='CRUD', variable=self.Crud, font=fonttext)
 		self.Node = IntVar()
-		self.Campo_Node = Checkbutton(self.Janela, text='NodeJs', variable=self.Node, font=fonttext)
+		self.Campo_Node = Checkbutton(self.Janela, bg='#fff', text='NodeJs', variable=self.Node, font=fonttext)
 		
 		# Bloco 2
 		
-		self.Label_Campo_Local = Label(self.Janela, text='Local para criar diretório do projeto:', font=fonttext)
+		self.Label_Campo_Local = Label(self.Janela, bg='#fff', text='Local para criar diretório do projeto:', font=fonttext)
 		self.Campo_Local = Entry(self.Janela, bd=1, relief=SOLID, highlightbackground='#000', font=fontlight)
 		self.Botao_Pesquisar = Button(self.Janela, bd=1, text='Selecionar diretório', relief=SOLID, bg='#FFFF00', highlightbackground='#000', font=fontlight, command=self.ProcurarDiretorio)
 		
+		# Bloco 3
+		self.Botao_Processar = Button(self.Janela, bd=1, text='Criar Projeto', relief=SOLID, bg='#32CD32', highlightbackground='#000', font=fontlight, command=self.CriarDiretorios)
+		
 		# Rodape
-		self.Label_Rodape = Label(self.Janela, text='Erno Soluções (C) 2020', font=fonttext)
+		self.Label_Rodape = Label(self.Janela, bg='#fff', text='Erno Soluções (C) 2020', font=fonttext)
 		
 		# Posicionamento dos widghts
 		
@@ -65,14 +68,20 @@ class Programa_Principal():
 		self.Campo_Local.place(x=10, y=125, width=420, height=40)
 		self.Botao_Pesquisar.place(x=440, y=125, width=150, height=40)
 		
+		self.Botao_Processar.place(x=10, y=500, width=150, height=40)
+		
 		self.Label_Rodape.place(x=425, y=555)
 		self.Janela.mainloop()
 		
-	def CriarDiretorios(self, Diretorio, NomeProjeto):
-		if str(self.CampoLocal.get()) == '':
+	def CriarDiretorios(self):
+		Diretorio = str(self.Campo_Local.get())
+		NomeProjeto = str(self.Campo_Nome.get())
+		 
+		if Diretorio == '' or NomeProjeto == '':
 			print('Preencha todos os campos')
 		else:
-			Rodar_shell(f'mkdir {Diretorio}/{NomeProjeto}')
+			Rodar_shell(f'mkdir {NomeProjeto} {Diretorio}/')
+			print(f'mkdir {NomeProjeto} {Diretorio}/')
 	def ProcurarDiretorio(self):
 		self.Campo_Local.delete('0', END)
 		LocalDiretorio = filedialog.askdirectory(title = 'Informe o local para iniciar o projeto')
@@ -89,3 +98,4 @@ fontlight = 'Raleway 10'
 
 if __name__ == '__main__':
 	Programa_Principal(Janela)
+	os.system('rmdir Modulos/__pycache__/')

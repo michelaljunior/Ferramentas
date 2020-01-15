@@ -6,6 +6,7 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter.scrolledtext import *
 from PIL import Image, ImageTk
+import os
 
 # Simplificações
 Rodar_shell = Rodar.Rodar
