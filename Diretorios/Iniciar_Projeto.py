@@ -74,7 +74,7 @@ class Programa_Principal():
 		self.Janela.mainloop()
 		
 	def CriarDiretorios(self):
-		Diretorio = str(self.Campo_Local.get())
+		Diretorio = Substituir('/','\\\\', str(self.Campo_Local.get()))
 		NomeProjeto = str(self.Campo_Nome.get())
 		 
 		if Diretorio == '' or NomeProjeto == '':
