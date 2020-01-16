@@ -76,12 +76,22 @@ class Programa_Principal():
 	def CriarDiretorios(self):
 		Diretorio = Substituir('/','\\\\', str(self.Campo_Local.get()))
 		NomeProjeto = str(self.Campo_Nome.get())
-		 
+		print(NomeProjeto)
 		if Diretorio == '' or NomeProjeto == '':
 			print('Preencha todos os campos')
 		else:
-			Rodar_shell(f'mkdir {NomeProjeto} {Diretorio}/')
-			print(f'mkdir {NomeProjeto} {Diretorio}/')
+			try:
+				os.mkdir(f'{Diretorio}\\{NomeProjeto}')
+				if self.Node.get() == 1:
+					padraopackge = {"name": f"{NomeProjeto}","version": "","description": "","main": "Controle/Controlador.js","scripts": {"start": "electron ."},"devDependencies": {"electron": "^7.1.9"}}
+					Arquivo = open(f'{Diretorio}/{NomeProjeto}/package.json', 'a')
+					Arquivo.write(str(padraopackge))
+					Arquivo.close()
+					
+			except:
+				print()
+			
+			
 	def ProcurarDiretorio(self):
 		self.Campo_Local.delete('0', END)
 		LocalDiretorio = filedialog.askdirectory(title = 'Informe o local para iniciar o projeto')
@@ -95,6 +105,8 @@ Janela.resizable(0,0)
 
 fonttext = 'Raleway 11'
 fontlight = 'Raleway 10'
+
+
 
 if __name__ == '__main__':
 	Programa_Principal(Janela)
