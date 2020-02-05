@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Versao: 1
 # Desenvolvido por Michel Anderson
-# Data Ultima alteração 10/01/2020
+# Data Ultima alteração 05/02/2020
 # Erno Soluções © 2020
 
 from Modulos import *
@@ -53,6 +53,7 @@ class Programa_Principal():
 		
 		# Rodape
 		self.Label_Rodape = Label(self.Janela, bg='#fff', text='Erno Soluções (C) 2020', font=fonttext)
+		self.Label_Progresso = Label(self.Janela, bg='#fff', text='Insira as informações', font=fonttext)
 		
 		# Posicionamento dos widghts
 		
@@ -70,7 +71,9 @@ class Programa_Principal():
 		
 		self.Botao_Processar.place(x=10, y=500, width=150, height=40)
 		
+		self.Label_Progresso.place(x=10, y=555)
 		self.Label_Rodape.place(x=425, y=555)
+		
 		self.Janela.mainloop()
 		
 	def CriarDiretorios(self):
@@ -82,14 +85,65 @@ class Programa_Principal():
 		else:
 			try:
 				os.mkdir(f'{Diretorio}\\{NomeProjeto}')
+				
+				self.Label_Progresso.configure(text="Criando Diretorios...")
+				
+				os.mkdir(f'{Diretorio}\\{NomeProjeto}\\Js')
+				os.mkdir(f'{Diretorio}\\{NomeProjeto}\\Html')
+				os.mkdir(f'{Diretorio}\\{NomeProjeto}\\Estilo')
+				os.mkdir(f'{Diretorio}\\{NomeProjeto}\\Estilo\\Imagens')
+				os.mkdir(f'{Diretorio}\\{NomeProjeto}\\Estilo\\Imagens\\Icones')
+				os.mkdir(f'{Diretorio}\\{NomeProjeto}\\Estilo\\Fontes')
+				
+				self.Label_Progresso.configure(text="Criando Arquivos...")
+				
 				if self.Node.get() == 1:
-					padraopackge = {"name": f"{NomeProjeto}","version": "","description": "","main": "Controle/Controlador.js","scripts": {"start": "electron ."},"devDependencies": {"electron": "^7.1.9"}}
+					padraopackge = {
+						"name": f"{NomeProjeto}",
+						"version": "0.1",
+						"description": "",
+						"Create by": "Erno Solucoes",
+						"main": "Js/Controlador.js",
+						"scripts": {
+							"start": "electron ."
+						},
+						"devDependencies": {
+							"electron": "^7.1.9"
+						}
+					}
+					
 					Arquivo = open(f'{Diretorio}/{NomeProjeto}/package.json', 'a')
 					Arquivo.write(str(padraopackge))
+					self.Label_Progresso.configure(text="Escrevendo package.json...")
 					Arquivo.close()
-					
-			except:
-				print()
+					js = '''// Todos os direitos a Erno Soluções 
+const {app, BrowserWindow} = require('electron');
+
+let Janela
+
+function CriarJanela () {
+	Janela = new BrowserWindow(
+		{
+			width: 1000,
+			height: 600,
+			webPreferences: {nodeIntegration: true},
+			//frame: false,
+		});
+
+	Janela.loadFile('Html/Login/index.html');
+	//Janela.setMenu(null);
+};
+
+app.on('ready', CriarJanela);
+'''
+					arquivo = open(f'{Diretorio}\\{NomeProjeto}\\Js\\Controlador.js', 'w')
+					arquivo.write(js)
+					arquivo.close()
+				
+				self.Label_Progresso.configure(text="Fim!")
+			except Exception as erro:
+				self.Label_Progresso.configure(text="Algo errado aconteceu!")
+				print(erro)
 			
 			
 	def ProcurarDiretorio(self):
