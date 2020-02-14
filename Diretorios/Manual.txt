@@ -1,0 +1,17 @@
+Todos os direitos reservados a Erno Soluções
+Distribuição proibida sobe a licensa de Copyright (c)
+
+Manual Do usuario
+
+# INSTALAÇÃO 
+
+1º Passo: Instalar a fonte padrao do programa "Relaway"
+2º Passo: Criar se já não criada a pasta "ErnoSolucoes" em "C:/" ou em "/home/Usuario/"
+3º Passo: Dentro da pasta "ErnoSolucoes" criar se já não criada a pasta "Ferramentas"
+4º Passo: Mover os arquivos para "Ferramentas" e criar um icone na area de trabalho ou de ferramentas
+conforme o seu sistema operacional
+
+# Comentarios do desenvolvedor
+
+Programa simples para criar o padrao de projeto usado no desenvolvimento da aplicações
+qualquer duvida entrar em contato com michelcontato001@gmail.com
