@@ -1,5 +1,5 @@
 Todos os direitos reservados a Erno Soluções
-Distribuição proibida sobe a licensa de Copyright (c)
+Distribuição somente com Copyright (c)
 
 Manual Do usuario
 
@@ -13,5 +13,5 @@ conforme o seu sistema operacional
 
 # Comentarios do desenvolvedor
 
-Programa simples para criar o padrao de projeto usado no desenvolvimento da aplicações
+Programa simples para criar um padrao de projeto usado no desenvolvimento da aplicações
 qualquer duvida entrar em contato com michelcontato001@gmail.com
